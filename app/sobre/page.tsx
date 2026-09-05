@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { RouteTransition } from "@/components/route-transition";
 import { Reveal } from "@/components/reveal";
+import { withBasePath } from "@/lib/base-path";
 
 export const metadata: Metadata = {
   title: "Sobre | AURUM",
@@ -32,7 +33,7 @@ export default function SobrePage() {
       <div className="relative mx-auto mt-8 h-[50vh] min-h-[360px] max-w-6xl overflow-hidden rounded-sm px-6 sm:px-10">
         <div className="relative h-full w-full overflow-hidden rounded-sm">
           <Image
-            src="/images/showroom-wide.jpg"
+            src={withBasePath("/images/showroom-wide.jpg")}
             alt="Showroom AURUM"
             fill
             className="object-cover"

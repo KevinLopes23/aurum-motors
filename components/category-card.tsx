@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Category } from "@/lib/types";
 import { getCategoryCover, getCarsByCategory } from "@/lib/data";
+import { withBasePath } from "@/lib/base-path";
 
 export function CategoryCard({ category }: { category: Category }) {
   const count = getCarsByCategory(category.slug).length;
@@ -12,7 +13,7 @@ export function CategoryCard({ category }: { category: Category }) {
       className="group relative block aspect-[3/4] overflow-hidden rounded-sm bg-panel sm:aspect-[4/5]"
     >
       <Image
-        src={getCategoryCover(category.slug)}
+        src={withBasePath(getCategoryCover(category.slug))}
         alt={category.name}
         fill
         sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"

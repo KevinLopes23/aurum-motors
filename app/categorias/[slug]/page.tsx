@@ -6,6 +6,7 @@ import { RouteTransition } from "@/components/route-transition";
 import { Reveal } from "@/components/reveal";
 import { CarCard } from "@/components/car-card";
 import { categories, getCategory, getCarsByCategory, getCategoryCover } from "@/lib/data";
+import { withBasePath } from "@/lib/base-path";
 
 export function generateStaticParams() {
   return categories.map((category) => ({ slug: category.slug }));
@@ -34,7 +35,7 @@ export default async function CategoriaPage(props: PageProps<"/categorias/[slug]
     <RouteTransition>
       <div className="relative flex h-[52vh] min-h-[380px] items-end overflow-hidden">
         <Image
-          src={getCategoryCover(slug)}
+          src={withBasePath(getCategoryCover(slug))}
           alt={category.name}
           fill
           priority

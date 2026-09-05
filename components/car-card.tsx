@@ -3,6 +3,7 @@ import Image from "next/image";
 import { ViewTransition } from "react";
 import type { Car } from "@/lib/types";
 import { formatPrice } from "@/lib/format";
+import { withBasePath } from "@/lib/base-path";
 
 export function CarCard({ car, priority = false }: { car: Car; priority?: boolean }) {
   return (
@@ -14,7 +15,7 @@ export function CarCard({ car, priority = false }: { car: Car; priority?: boolea
       <div className="relative aspect-[4/3] overflow-hidden rounded-sm bg-panel">
         <ViewTransition name={`car-${car.slug}`} share="morph" default="none">
           <Image
-            src={car.cover}
+            src={withBasePath(car.cover)}
             alt={`${car.brand} ${car.model}`}
             fill
             priority={priority}

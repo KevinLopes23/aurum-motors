@@ -42,7 +42,7 @@ export default async function CarPage(props: PageProps<"/carros/[slug]">) {
       <div className="relative flex h-[64vh] min-h-[440px] items-end overflow-hidden">
         <ViewTransition name={`car-${car.slug}`} share="morph" default="none">
           <Image
-            src={car.cover}
+            src={withBasePath(car.cover)}
             alt={`${car.brand} ${car.model}`}
             fill
             priority
@@ -99,7 +99,7 @@ export default async function CarPage(props: PageProps<"/carros/[slug]">) {
           <Reveal delay={0.15} className="mt-12 overflow-hidden rounded-sm">
             <div className="relative aspect-video w-full">
               <Image
-                src={car.detail}
+                src={withBasePath(car.detail)}
                 alt={`${car.brand} ${car.model} detalhe`}
                 fill
                 className="object-cover"

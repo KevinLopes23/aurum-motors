@@ -7,6 +7,7 @@ import { SectionHeading } from "@/components/section-heading";
 import { CategoryCard } from "@/components/category-card";
 import { CarCard } from "@/components/car-card";
 import { categories, getFeaturedCars } from "@/lib/data";
+import { withBasePath } from "@/lib/base-path";
 
 export default function Home() {
   const featured = getFeaturedCars();
@@ -74,7 +75,7 @@ export default function Home() {
 
       <section className="relative h-[70vh] min-h-[480px] w-full overflow-hidden">
         <Image
-          src="/images/showroom-wide.jpg"
+          src={withBasePath("/images/showroom-wide.jpg")}
           alt="Showroom AURUM"
           fill
           className="object-cover"
