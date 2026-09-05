@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AURUM Motors
 
-## Getting Started
+Site institucional para uma concessionária fictícia de carros de luxo, construído como vitrine de alto padrão: fotos e vídeos reais dos veículos, transições de página nativas do React 19 (`ViewTransition`), animações de entrada com scroll e uma identidade visual escura com detalhes dourados.
 
-First, run the development server:
+## Stack
+
+- [Next.js 16](https://nextjs.org/) (App Router, Turbopack)
+- [React 19](https://react.dev/) — incluindo `ViewTransition` para as transições entre páginas
+- [Tailwind CSS v4](https://tailwindcss.com/)
+- [Framer Motion](https://www.framer.com/motion/) — animações de entrada com scroll
+- TypeScript
+
+## Funcionalidades
+
+- **Home** com vídeo em tela cheia, categorias, carros em destaque e seção editorial
+- **Catálogo de carros** (`/carros`) com filtro por categoria
+- **Página de categoria** (`/categorias/[slug]`)
+- **Ficha do carro** (`/carros/[slug]`) com galeria de fotos, vídeo do carro (quando disponível), especificações técnicas e CTA de WhatsApp
+- **Sobre** e **Contato**
+- Transições de página com morph de imagem (carro na listagem → carro no detalhe), slide direcional entre rotas e crossfade ao trocar filtros, usando a API nativa `ViewTransition` do React
+- Catálogo de dados em `lib/data.ts` (sem banco de dados — fácil de editar manualmente)
+
+## Rodando localmente
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abra [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Outros comandos
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build   # build de produção
+npm run start   # roda o build de produção
+npm run lint    # eslint
+npx tsc --noEmit  # checagem de tipos
+```
 
-## Learn More
+## Estrutura do projeto
 
-To learn more about Next.js, take a look at the following resources:
+```
+app/                  rotas (App Router)
+  carros/             catálogo e ficha de cada carro
+  categorias/         listagem e página de cada categoria
+  sobre/, contato/
+components/           componentes de UI (header, footer, cards, reveal, etc.)
+lib/                  dados dos carros/categorias e funções utilitárias
+public/images/        fotos dos carros e da marca
+public/videos/        vídeo de hero e vídeos individuais de alguns carros
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Editando o catálogo
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Todos os carros e categorias estão em `lib/data.ts` — não há banco de dados nem CMS. Para adicionar, remover ou editar um carro, edite o array `cars` (ou `categories`) diretamente nesse arquivo. Cada carro aponta para arquivos de imagem/vídeo dentro de `public/`.
 
-## Deploy on Vercel
+## Mídia
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+As fotos e vídeos foram buscados em bancos de imagem gratuitos de uso comercial (Pexels), priorizando fotos reais que correspondem à marca e modelo de cada carro do catálogo. Duas ressalvas importantes:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Fotos**: em 2 dos 12 carros (Lucid Air e Porsche Taycan) não havia foto de estoque do modelo exato disponível gratuitamente, então foi usada uma foto real de um modelo/ângulo próximo como substituto.
+- **Vídeos**: apenas 7 dos 12 carros têm vídeo próprio na ficha técnica. Para os outros 5 (Lamborghini Urus, Porsche 911 Cabriolet, Porsche Taycan, Lucid Air, Jaguar E-Type), o estoque gratuito só tinha vídeos de marca diferente da anunciada — nesses casos a seção de vídeo simplesmente não aparece na página, em vez de mostrar um carro errado.
+
+Antes de usar este projeto em produção para um negócio real, considere substituir a mídia por fotos/vídeos próprios do estoque real de veículos.
+
+## Configuração pendente antes de publicar de verdade
+
+- Número de WhatsApp e demais contatos em `components/site-footer.tsx` e `app/carros/[slug]/page.tsx` estão com um placeholder (`5511999999999`) — troque pelo número real.
+- Preços, especificações e textos são fictícios/ilustrativos.
