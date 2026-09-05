@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
 import { useRef } from "react";
+import { withBasePath } from "@/lib/base-path";
 
 export function HeroVideo() {
   const ref = useRef<HTMLDivElement>(null);
@@ -19,7 +20,7 @@ export function HeroVideo() {
       <motion.video
         style={{ y }}
         className="absolute inset-0 h-full w-full scale-110 object-cover"
-        src="/videos/hero-driving.mp4"
+        src={withBasePath("/videos/hero-driving.mp4")}
         autoPlay
         muted
         loop

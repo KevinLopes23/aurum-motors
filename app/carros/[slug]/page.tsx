@@ -8,6 +8,7 @@ import { Reveal } from "@/components/reveal";
 import { CarCard } from "@/components/car-card";
 import { cars, getCar, getCategory, getRelatedCars } from "@/lib/data";
 import { formatPrice, formatNumber } from "@/lib/format";
+import { withBasePath } from "@/lib/base-path";
 
 export function generateStaticParams() {
   return cars.map((car) => ({ slug: car.slug }));
@@ -114,8 +115,8 @@ export default async function CarPage(props: PageProps<"/carros/[slug]">) {
               </p>
               <div className="relative mt-4 aspect-video w-full overflow-hidden rounded-sm bg-panel">
                 <video
-                  src={car.video}
-                  poster={car.cover}
+                  src={withBasePath(car.video)}
+                  poster={withBasePath(car.cover)}
                   controls
                   preload="metadata"
                   playsInline
