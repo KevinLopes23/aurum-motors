@@ -2,6 +2,16 @@
 
 Site institucional para uma concessionária fictícia de carros de luxo, construído como vitrine de alto padrão: fotos e vídeos reais dos veículos, transições de página nativas do React 19 (`ViewTransition`), animações de entrada com scroll e uma identidade visual escura com detalhes dourados.
 
+## Screenshots
+
+| Home | Acervo |
+| --- | --- |
+| ![Home](docs/screenshots/home.jpg) | ![Acervo de carros](docs/screenshots/carros.jpg) |
+
+| Ficha do carro | Categorias |
+| --- | --- |
+| ![Ficha do carro](docs/screenshots/carro-detalhe.jpg) | ![Categorias](docs/screenshots/categorias.jpg) |
+
 ## Stack
 
 - [Next.js 16](https://nextjs.org/) (App Router, Turbopack)
